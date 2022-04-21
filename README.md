@@ -1,6 +1,6 @@
 # JavaScript-Fighting-Game:
 
-[] Setup
+[x] Setup
 [] Criação de Jogador e Inimigo
 [] Mover Personagens e Adicionar Eventos/Comandos
 [] Ataques
