@@ -141,7 +141,7 @@ function determineWinner({player, enemy, timerId}) {
   }
 }
 
-let timer = 60;
+let timer = 5;
 let timerId;
 
 function decreaseTimer() {
@@ -154,6 +154,8 @@ function decreaseTimer() {
     determineWinner({ player, enemy, timerId });
   }
 };
+
+decreaseTimer();
 
 function animate() {
   window.requestAnimationFrame(animate);
