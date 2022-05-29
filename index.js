@@ -85,6 +85,35 @@ const enemy = new Fighter({
   offset: {
     x: -50,
     y: 0
+  },
+  imageSrc: './sprites/Martial Hero 2/Sprites/Idle.png',
+  framesMax: 4,
+  scale: 2.5,
+  offset: {
+    x: 215,
+    y: 167
+  },
+  sprites: {
+    idle: {
+      imageSrc: './sprites/Martial Hero 2/Sprites/Idle.png',
+      framesMax: 4,
+    },
+    run: {
+      imageSrc: './sprites/Martial Hero 2/Sprites/Run.png',
+      framesMax: 8,
+    },
+    jump: {
+      imageSrc: './sprites/Martial Hero 2/Sprites/Jump.png',
+      framesMax: 2,
+    },
+    fall: {
+      imageSrc: './sprites/Martial Hero 2/Sprites/Fall.png',
+      framesMax: 2,
+    },
+    attack1: {
+      imageSrc: './sprites/Martial Hero 2/Sprites/Attack1.png',
+      framesMax: 4,
+    }
   }
 });
 
@@ -116,7 +145,7 @@ function animate() {
   background.update();
   shop.update();
   player.update();
-  // enemy.update();
+  enemy.update();
 
   player.velocity.x = 0;
   enemy.velocity.x = 0;
@@ -142,8 +171,19 @@ function animate() {
   // Enemy movement
   if (keys.ArrowLeft.pressed && enemy.lastKey === 'ArrowLeft') {
     enemy.velocity.x = -5;
+    enemy.switchSprites('run');
   } else if (keys.ArrowRight.pressed && enemy.lastKey === 'ArrowRight') {
     enemy.velocity.x = 5;
+    enemy.switchSprites('run');
+  } else {
+    enemy.switchSprites('idle');
+  }
+
+  // jumpando
+  if(enemy.velocity.y < 0) {
+    enemy.switchSprites('jump');
+  } else if (enemy.velocity.y > 0) {
+    enemy.switchSprites('fall');
   }
 
   // detect for colission
